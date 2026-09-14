@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - PracFinalQA</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="card">
+    <h2>Registro de Usuario</h2>
+    <div id="alertBox" class="alert"></div>
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="nombre">Nombre Completo</label>
+        <input type="text" id="nombre" name="nombre">
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo Electronico</label>
+        <input type="text" id="correo" name="correo">
+      </div>
+      <div class="form-group">
+        <label for="edad">Edad</label>
+        <input type="number" id="edad" name="edad">
+      </div>
+      <div class="form-group">
+        <label for="password">Contrasena</label>
+        <input type="password" id="password" name="password">
+      </div>
+      <button type="submit" id="btnRegister">Registrar</button>
+    </form>
+    <div class="links">
+      <a href="/login">Ya tienes cuenta? Iniciar Sesion</a>
+    </div>
+  </div>
+  <script src="/js/register.js"></script>
+</body>
+</html> 
