@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 // Modulo 1: Registro
 exports.register = async (req, res) => {
   const { nombre, correo, edad, password } = req.body;
-
+  const fotoNombre = req.file ? req.file.filename : 'default.png';
   if (!nombre || nombre.length === 0) {
     return res.status(400).json({ error: 'El nombre es obligatorio.' });
   }
@@ -39,9 +39,9 @@ exports.register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.query(
-      'INSERT INTO users (nombre, correo, edad, password) VALUES (?, ?, ?, ?)',
-      [nombre, correo, edadNum, hashedPassword]
-    );
+  'INSERT INTO users (nombre, correo, edad, password, foto) VALUES (?, ?, ?, ?, ?)',
+  [nombre, correo, edadNum, hashedPassword, fotoNombre]
+);
 
     return res.status(201).json({ mensaje: 'Usuario registrado exitosamente.' });
   } catch (error) {

@@ -5,18 +5,23 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
   alertBox.style.display = 'none';
 
-  const payload = {
-    nombre: document.getElementById('nombre').value,
-    correo: document.getElementById('correo').value,
-    edad: document.getElementById('edad').value,
-    password: document.getElementById('password').value
-  };
+  // Construcción del formulario multipart
+  const formData = new FormData();
+  formData.append('nombre', document.getElementById('nombre').value);
+  formData.append('correo', document.getElementById('correo').value);
+  formData.append('edad', document.getElementById('edad').value);
+  formData.append('password', document.getElementById('password').value);
+
+  const fotoInput = document.getElementById('foto');
+  if (fotoInput && fotoInput.files[0]) {
+    formData.append('foto', fotoInput.files[0]);
+  }
 
   try {
     const res = await fetch('/api/register', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      // No definir headers de Content-Type aquí; el navegador lo hace solo
+      body: formData
     });
 
     const data = await res.json();
